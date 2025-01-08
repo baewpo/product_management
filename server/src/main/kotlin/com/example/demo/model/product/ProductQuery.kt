@@ -6,6 +6,6 @@ data class ProductQuery(
     var priceMax: Int?,
     var stock: Boolean = false,
     var categories: List<Int>?,
-    var page : Int = 0,
-    var size : Int = 9
+    var pageNumber: Int = 1,
+    var pageSize: Int = 9
 )

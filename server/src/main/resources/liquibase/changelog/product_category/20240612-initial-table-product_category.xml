@@ -22,4 +22,18 @@
         <addForeignKeyConstraint baseTableName="product_category" baseColumnNames="product_id" constraintName="fk_product_id" referencedTableName="product" referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="product_category" baseColumnNames="category_id" constraintName="fk_category_id" referencedTableName="category" referencedColumnNames="id"/>
     </changeSet>
+
+    <changeSet id="20240612-insert-product-category-data" author="suphatsorn.suk">
+        <sql>
+            INSERT INTO product_category (product_id, category_id)
+            VALUES
+            (1, 1),
+            (1, 2),
+            (2, 1),
+            (2, 3),
+            (3, 4),
+            (4, 5);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
