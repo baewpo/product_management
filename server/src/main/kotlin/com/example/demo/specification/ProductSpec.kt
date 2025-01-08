@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class ProductSpec {
-    fun productFilter(product: ProductQuery): Specification<ProductEntity> {
+    fun generateFromQuery(product: ProductQuery): Specification<ProductEntity> {
         return Specification { root, query, cb ->
             val name = product.name
             val priceMin = product.priceMin
@@ -17,6 +17,7 @@ class ProductSpec {
             val stock = product.stock
             val categories = product.categories
             val conditions = arrayListOf<Predicate>()
+
             if (!name.isNullOrBlank()) {
                 conditions.add(cb.like(cb.lower(root.get("name")), name.toLowerCase() + "%"))
             }
@@ -30,13 +31,12 @@ class ProductSpec {
             if (stock) {
                 conditions.add(cb.greaterThan(root.get("quantity"), 0))
             }
-            if (categories != null && categories.isNotEmpty()) {
+            if (!categories.isNullOrEmpty()) {
                     conditions.add(root.get<ProductCategoryEntity>("categories")
                         .get<CategoryEntity>("category")
                         .get<Int>("id")
                         .`in`(categories))
             }
-            query.distinct(true);
             cb.and(*conditions.toTypedArray())
         }
     }

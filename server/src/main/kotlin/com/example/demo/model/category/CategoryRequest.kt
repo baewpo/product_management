@@ -1,4 +1,4 @@
-package com.example.demo.model.product
+package com.example.demo.model.category
 
 data class CategoryRequest(
     var id: Int,

@@ -5,6 +5,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="20240612-create-table-product" author="suphatsorn.suk">
@@ -27,6 +28,27 @@
             <column name="image" type="varchar(300)">
                 <constraints nullable="false" />
             </column>
+            <column name="created_at" type="timestamptz" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamptz" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="20240612-insert-example-data" author="suphatsorn.suk">
+        <sql>
+            INSERT INTO product (name, price, description, quantity, image)
+            VALUES
+            ('Leather Jacket', 150.0, 'Stylish leather jacket for men. Made with high-quality leather.', 50, 'https://example.com/images/leather_jacket.jpg'),
+            ('Running Shoes', 85.0, 'Comfortable running shoes with a breathable upper and durable sole.', 200, 'https://example.com/images/running_shoes.jpg'),
+            ('Bluetooth Headphones', 120.0, 'Wireless Bluetooth headphones with noise-canceling technology.', 100, 'https://example.com/images/bluetooth_headphones.jpg'),
+            ('Smartphone Stand', 15.0, 'Adjustable stand for smartphones and tablets. Ideal for watching videos or video calls.', 150, 'https://example.com/images/smartphone_stand.jpg'),
+            ('Sports Watch', 250.0, 'Water-resistant sports watch with heart rate monitoring and GPS.', 75, 'https://example.com/images/sports_watch.jpg'),
+            ('Backpack', 40.0, 'Durable and spacious backpack for daily use. Includes a laptop compartment.', 120, 'https://example.com/images/backpack.jpg'),
+            ('Portable Charger', 25.0, 'Compact and high-capacity power bank for charging on the go.', 180, 'https://example.com/images/portable_charger.jpg'),
+            ('Wristwatch', 95.0, 'Elegant wristwatch with a stainless steel band and scratch-resistant glass.', 60, 'https://example.com/images/wristwatch.jpg');
+        </sql>
     </changeSet>
 </databaseChangeLog>

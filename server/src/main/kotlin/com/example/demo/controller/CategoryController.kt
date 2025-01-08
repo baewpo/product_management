@@ -1,37 +1,19 @@
 package com.example.demo.controller
 
-import com.example.demo.converter.CategoryConverter
+import com.example.demo.model.category.CategoryEntity
 import com.example.demo.model.category.CategoryResponse
-import com.example.demo.model.product.CategoryRequest
-import com.example.demo.service.CategoryService
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import com.example.demo.repository.CategoryRepository
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@CrossOrigin
 class CategoryController constructor(
-    val categoryService: CategoryService,
-    val categoryConverter: CategoryConverter
+    val categoryRepository: CategoryRepository,
 ) {
 
     @GetMapping("/categories")
-    fun getAllCategories(): ResponseEntity<List<CategoryResponse>> {
-        val categories = categoryService.getAllCategory()
-        return ResponseEntity.ok(categories)
+    fun getAllCategories(): List<CategoryResponse> {
+        return categoryRepository.findAll().map(CategoryEntity::toResponse)
     }
 
-    @GetMapping("/categories/{id}")
-    fun getCategoryById(@PathVariable id: Int): ResponseEntity<CategoryResponse> {
-        val category = categoryService.getCategoryById(id)
-        val categoryResponse = categoryConverter.entityToResponse(category)
-        return ResponseEntity.ok().body(categoryResponse)
-    }
-
-    @PostMapping("/categories")
-    fun addCategory(@RequestBody request: CategoryRequest): ResponseEntity<CategoryResponse> {
-        val categoryResponse = categoryService.addCategory(request)
-        return ResponseEntity(categoryResponse, HttpStatus.CREATED)
-
-    }
 }
