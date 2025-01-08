@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+	<include file="category/20240612-initial-table-category.xml" relativeToChangelogFile="true" />
+	<include file="product/20240612-initial-table-product.xml" relativeToChangelogFile="true" />
+	<include file="product_category/20240612-initial-table-product_category.xml" relativeToChangelogFile="true" />
+	<include file="user/20240612-initial-table-user.xml" relativeToChangelogFile="true" />
+</databaseChangeLog>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240612-create-table-user" author="suphatsorn.suk">
+        <createTable tableName="user">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="username" type="varchar(20)">
+                <constraints nullable="false" />
+        </column>
+            <column name="password" type="varchar(16)">
+                <constraints nullable="false" />
+            </column>
+            <column name="role" type="varchar(10)" defaultValue="user">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="initial-data-user" author="suphatsorn.suk">
+        <insert tableName="user">
+            <column name="id" value="1" />
+            <column name="username" value="admin" />
+            <column name="password" value="password123 "/>
+            <column name="role" value="admin" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>
