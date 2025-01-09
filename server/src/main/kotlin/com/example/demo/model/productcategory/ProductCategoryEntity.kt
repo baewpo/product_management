@@ -5,7 +5,7 @@ import com.example.demo.model.product.ProductEntity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "product_category")
+@Table(name = "product_category", schema = "product")
 data class ProductCategoryEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

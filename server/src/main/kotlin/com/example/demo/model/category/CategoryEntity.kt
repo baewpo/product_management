@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "category")
+@Table(name = "category", schema = "product")
 data class CategoryEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
