@@ -11,7 +11,7 @@ class CategoryController constructor(
     val categoryRepository: CategoryRepository,
 ) {
 
-    @GetMapping("/categories")
+    @GetMapping("/api/categories")
     fun getAllCategories(): List<CategoryResponse> {
         return categoryRepository.findAll().map(CategoryEntity::toResponse)
     }

@@ -32,11 +32,12 @@ class ProductSpec {
                 conditions.add(cb.greaterThan(root.get("quantity"), 0))
             }
             if (!categories.isNullOrEmpty()) {
-                    conditions.add(root.get<ProductCategoryEntity>("categories")
+                    conditions.add(root.get<ProductCategoryEntity>("productCategories")
                         .get<CategoryEntity>("category")
                         .get<Int>("id")
                         .`in`(categories))
             }
+            query.distinct(true)
             cb.and(*conditions.toTypedArray())
         }
     }
