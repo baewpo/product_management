@@ -36,7 +36,7 @@ class ProductController constructor(
             "totalPages" to products.totalPages,
             "pageNumber" to (products.number + 1),
             "pageSize" to products.size,
-            "content" to products.content
+            "content" to products.content.map { it.toResponse() }
         )
 
         return ResponseEntity.ok(response)

@@ -14,7 +14,7 @@ import java.security.MessageDigest
 @RestController
 class UserController(val userRepository: UserRepository) {
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     fun login(@RequestBody request: UserRequest): UserResponse {
         val user = userRepository.findByUsername(request.username)
             .orElseThrow { ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid credentials") }

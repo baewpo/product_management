@@ -6,7 +6,7 @@ import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "product")
+@Table(name = "product", schema = "product")
 data class ProductEntity(
 
     @Id
