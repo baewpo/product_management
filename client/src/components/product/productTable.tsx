@@ -105,8 +105,8 @@ class ProductTable extends React.Component<IProps, IStates> {
 
 	private async deleteProduct(): Promise<void> {
 		try {
-			const response = axios.delete(`/api/products/${this.state.productRequest.id}`)
-			showToast("success", response.data)
+			await axios.delete(`/api/products/${this.state.productRequest.id}`)
+			showToast("success", "Delete product success!")
 		} catch (error) {
 			console.log(error)
 			showToast("error", error.response?.data?.message)
@@ -195,7 +195,15 @@ class ProductTable extends React.Component<IProps, IStates> {
 				</div>
 				{this.state.showProductForm && (
 					<ProductForm
-						onSubmit={() => this.setState({ showProductForm: false }, () => this.getProducts())}
+						onSubmit={() =>
+							this.setState(
+								{
+									showProductForm: false,
+									currentPage: this.state.formType === ProductFormTypeEnum.ADD ? 1 : this.state.currentPage,
+								},
+								() => this.getProducts()
+							)
+						}
 						onClose={() => this.setState({ showProductForm: false })}
 						productRequest={this.state.productRequest}
 						type={this.state.formType}
@@ -206,9 +214,11 @@ class ProductTable extends React.Component<IProps, IStates> {
 					show={this.state.showDeleteModal}
 					onClose={() => this.setState({ showDeleteModal: false })}
 					text="Are you sure to delete this product ?"
-					onConfirm={async () => {
-						await this.deleteProduct()
-						this.getProducts()
+					onConfirm={() => {
+						this.setState({ showDeleteModal: false }, async () => {
+							await this.deleteProduct()
+							this.getProducts()
+						})
 					}}
 				/>
 				<div className="flex justify-end text-xs">

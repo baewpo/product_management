@@ -43,6 +43,35 @@ class ProductForm extends Component<IProps, IStates> {
 		}
 	}
 
+	private validate(): boolean {
+		if (!this.state.productRequest.name) {
+			showToast('warning', "Please enter product name.")
+			return false
+		}
+		if (!this.state.productRequest.price) {
+			showToast("warning", "Please enter product price.")
+			return false
+		}
+		if (!this.state.productRequest.quantity) {
+			showToast("warning", "Please enter product quantity.")
+			return false
+		}
+		if (!this.state.productRequest.description) {
+			showToast("warning", "Please enter product description.")
+			return false
+		}
+		if (!this.state.productRequest.image) {
+			showToast("warning", "Please enter product image url.")
+			return false
+		}
+		if (!this.state.productRequest.categories.length) {
+			showToast("warning", "Please select at least 1 product category.")
+			return false
+		}
+		return true
+
+	}
+
 	private async addProduct(): Promise<void> {
 		try {
 			const response = await axios.post("/api/products", this.state.productRequest)
@@ -211,8 +240,14 @@ class ProductForm extends Component<IProps, IStates> {
 								<div className="flex justify-end mt-2 gap-2">
 									<button
 										className="bg-slate-800 rounded-full px-4 py-2 border border-transparent text-center text-sm text-white transition-all ease-in-out duration-500 shadow-sm hover:shadow hover:bg-slate-700"
-										onClick={() =>
-											this.props.type === ProductFormTypeEnum.ADD ? this.addProduct() : this.updateProduct()
+										onClick={() => {
+											if (this.validate()) {
+												this.props.type === ProductFormTypeEnum.ADD
+													? this.addProduct()
+													: this.updateProduct()
+											}
+										}
+
 										}>
 										{this.props.type} Product
 									</button>
