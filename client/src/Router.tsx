@@ -1,11 +1,11 @@
 import { Component } from "react"
 import { Routes, Route } from "react-router-dom"
-import Layout from "./components/common/layout"
 import ProductPage from "./pages/productPage"
 import Login from "./pages/login"
 import PageNotFound from "./pages/not-found/PageNotFound"
 import PrivateRoute from "routes/privateRoutes"
 import ProductManagementPage from "pages/productManagementPage"
+import Layout from "components/general/layout"
 
 class Router extends Component {
 	render() {
