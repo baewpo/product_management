@@ -6,7 +6,7 @@ function Layout(): ReactElement {
 	return (
 		<Fragment>
 			<Navbar />
-			<div id="container" className="overflow-y-auto h-screen">
+			<div id="container" className="overflow-y-auto h-[calc(100vh-60px)]">
 				<Outlet></Outlet>
 			</div>
 		</Fragment>

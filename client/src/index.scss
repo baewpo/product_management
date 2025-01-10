@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap");
+@import "./styles/global.scss";
 
 #root {
 	width: 100vw;
@@ -9,6 +10,7 @@
 }
 
 body {
+	@include scrollBar();
 	font-family: "Kanit", sans-serif;
 	margin: 0;
 	display: flex;

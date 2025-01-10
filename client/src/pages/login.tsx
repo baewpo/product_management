@@ -87,9 +87,7 @@ class Login extends Component<{}, IStates> {
 								</label>
 								<div class="flex items-center mb-10 mt-6">
 									<div class="flex ml-auto">
-										<a
-											href="#"
-											class="inline-flex text-sm text-blue-500 hover:text-blue-700">
+										<a href="#" class="inline-flex text-sm text-blue-500 hover:text-blue-700 transition-all ease duration-500">
 											Forgot Your Password?
 										</a>
 									</div>
@@ -98,7 +96,8 @@ class Login extends Component<{}, IStates> {
 							<div>
 								<button
 									type="submit"
-									className="flex w-full my-20 justify-center text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+									className="w-full py-2.5 flex items-center justify-center gap-2 rounded-full bg-slate-800 text-white font-semibold text-sm shadow-sm transition-all duration-300 hover:shadow
+					hover:bg-slate-700">
 									Sign in
 								</button>
 							</div>

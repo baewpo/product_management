@@ -4,8 +4,8 @@ import Layout from "./components/common/layout"
 import ProductPage from "./pages/productPage"
 import Login from "./pages/login"
 import PageNotFound from "./pages/not-found/PageNotFound"
-import AddProduct from "./pages/addProduct"
 import PrivateRoute from "routes/privateRoutes"
+import ProductManagementPage from "pages/productManagementPage"
 
 class Router extends Component {
 	render() {
@@ -15,7 +15,7 @@ class Router extends Component {
 					<Route element={<Layout />}>
 						<Route index element={<ProductPage />} />
 						<Route path="login" element={<PrivateRoute component={Login} />} />
-						<Route path="/manage-product" element={<PrivateRoute component={AddProduct} />} />
+						<Route path="/manage-product" element={<PrivateRoute component={ProductManagementPage} />} />
 					</Route>
 					<Route path="*" element={<PageNotFound />} />
 				</Routes>

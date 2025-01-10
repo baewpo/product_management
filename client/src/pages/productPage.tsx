@@ -1,13 +1,13 @@
 import { Component } from "react"
 import axios from "axios"
 import Filter from "../components/general/filter"
-import Product from "../components/common/productBox"
 import ProductParam from "models/product/productParam"
 import ProductResponse from "models/product/productResponse"
 import { showToast } from "components/general/toast"
 import Loading from "components/general/loading"
 import Pagination from "components/general/pagination"
 import qs from "qs"
+import ProductCard from "components/product/productCard"
 
 interface IStates {
 	products: Array<ProductResponse>
@@ -103,9 +103,7 @@ class ProductPage extends Component<{}, IStates> {
 										<p>No Products Available</p>
 									</div>
 								) : (
-									this.state.products.map((product) => (
-										<Product key={product.id} product={product} />
-									))
+									this.state.products.map((product) => <ProductCard key={product.id} product={product} />)
 								)}
 							</div>
 							<div className="flex justify-center pt-4">

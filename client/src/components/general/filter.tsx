@@ -64,7 +64,7 @@ class Filter extends Component<IProps, IStates> {
 							}}
 						/>
 						<button
-							className="absolute right-1 top-1 rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow hover:bg-slate-700"
+							className="absolute right-1 top-1 rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all ease-in-out duration-300 shadow-sm hover:shadow hover:bg-slate-700 "
 							type="button"
 							onClick={() => this.props.onSearch(this.state.productParam)}>
 							Search
@@ -72,12 +72,12 @@ class Filter extends Component<IProps, IStates> {
 					</div>
 				</div>
 				<hr className="my-6" />
-				<label className="text-black text-3xl font-semibold flex w-full gap-2 items-center mb-5">
-					<i className="fa fa-filter text-black"></i>Filter
+				<label className="slate-800 text-3xl font-semibold flex w-full gap-2 items-center mb-5">
+					<i className="fa fa-filter slate-800" aria-hidden="true"></i>Filter
 				</label>
 				<div>
 					<div className="flex items-center gap-2 my-2 justify-between">
-						<label className="text-black font-medium text-xl">Price</label>
+						<label className="slate-800 font-medium text-xl">Price</label>
 						<button
 							type="button"
 							onClick={() =>
@@ -93,15 +93,15 @@ class Filter extends Component<IProps, IStates> {
 								)
 							}
 							className="text-gray-400 hover:text-gray-600 text-xs transition-all ease duration-300">
-							<i className="fas fa-times-circle mr-1 text-xs"></i>Clear
+							<i className="fas fa-times-circle mr-1 text-xs " aria-hidden="true"></i>Clear
 						</button>
 					</div>
 					<div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-4">
 						<div className="flex flex-col sm:w-1/2">
-							<label className="block mb-2 text-sm font-medium text-gray-900">From</label>
+							<label className="block mb-2 text-sm font-medium text-slate-800">From</label>
 							<input
-								type="text"
-								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2 transition duration-300 ease focus:outline-none focus:ring-black focus:border-black shadow-sm focus:shadow"
+								type="number"
+								className="bg-gray-50 border border-gray-300 text-slate-800 text-sm rounded-lg block w-full p-2 transition duration-300 ease focus:outline-none focus:ring-black focus:border-black shadow-sm focus:shadow"
 								value={this.state.productParam.priceMin || ""}
 								onChange={(e) =>
 									this.setState({
@@ -111,13 +111,15 @@ class Filter extends Component<IProps, IStates> {
 										},
 									})
 								}
+								min={0}
+								placeholder="min"
 							/>
 						</div>
 						<div className="flex flex-col sm:w-1/2">
-							<label className="block mb-2 text-sm font-medium text-gray-900">To</label>
+							<label className="block mb-2 text-sm font-medium text-slate-800">To</label>
 							<input
-								type="text"
-								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2 transition duration-300 ease focus:outline-none focus:ring-black focus:border-black shadow-sm focus:shadow"
+								type="number"
+								className="bg-gray-50 border border-gray-300 text-slate-800 text-sm rounded-lg block w-full p-2 transition duration-300 ease focus:outline-none focus:ring-black focus:border-black shadow-sm focus:shadow"
 								value={this.state.productParam.priceMax || ""}
 								onChange={(e) =>
 									this.setState({
@@ -127,6 +129,8 @@ class Filter extends Component<IProps, IStates> {
 										},
 									})
 								}
+								min={0}
+								placeholder="max"
 							/>
 						</div>
 					</div>
@@ -134,13 +138,13 @@ class Filter extends Component<IProps, IStates> {
 						className="w-full py-2.5 flex items-center justify-center gap-2 rounded-full bg-slate-800 text-white font-semibold text-sm shadow-sm transition-all duration-300 hover:shadow
 					hover:bg-slate-700"
 						onClick={() => this.props.onSearch(this.state.productParam)}>
-						<i className="fas fa-search"></i>
+						<i className="fas fa-search" aria-hidden="true"></i>
 						Search
 					</button>
 				</div>
 				<hr className="my-6" />
 				<div className="filter-content">
-					<label className="text-black text-xl font-semibold mt-6">Stock</label>
+					<label className="slate-800 text-xl font-semibold mt-6">Stock</label>
 					{stockOptions.map((option, index) => (
 						<div className="block mt-4" key={index}>
 							<input
@@ -162,10 +166,11 @@ class Filter extends Component<IProps, IStates> {
 						</div>
 					))}
 					<hr className="my-6" />
-					<label className="text-black text-xl font-semibold mt-6">Categories</label>
+					<label className="slate-800 text-xl font-semibold mt-6">Categories</label>
 					{this.state.categoryOptions.map((option) => (
 						<div className="block mt-4" key={`${option.id}-${option}`}>
 							<input
+								className="transition-all ease-in-out duration-300 shadow-sm hover:shadow"
 								type="checkbox"
 								checked={this.state.productParam.categories?.includes(option.id)}
 								onChange={() => {
@@ -177,9 +182,7 @@ class Filter extends Component<IProps, IStates> {
 										{
 											productParam: {
 												...this.state.productParam,
-												categories: updatedCategories.length
-													? updatedCategories
-													: undefined,
+												categories: updatedCategories.length ? updatedCategories : undefined,
 											},
 										},
 										() => this.props.onSearch(this.state.productParam)
