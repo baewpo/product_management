@@ -9,6 +9,7 @@ import com.example.demo.repository.CategoryRepository
 import com.example.demo.repository.ProductCategoryRepository
 import com.example.demo.repository.ProductRepository
 import com.example.demo.specification.ProductSpec
+import jakarta.transaction.Transactional
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
@@ -51,6 +52,13 @@ class ProductController constructor(
 
     @PostMapping("/api/products")
     fun addProduct(@RequestBody request: ProductRequest): ProductResponse {
+        val newProduct = ProductEntity(
+            name = request.name,
+            price = request.price,
+            description = request.description,
+            quantity = request.quantity,
+            image = request.image
+        )
         val productCategories = request.categories.map { categoryId ->
             val category = categoryRepository.findById(categoryId)
                 .orElseThrow {
@@ -59,16 +67,9 @@ class ProductController constructor(
                         "Category not found with id: $categoryId"
                     )
                 }
-            ProductCategoryEntity(category = category)
+            ProductCategoryEntity(product = newProduct, category = category)
         }
-        val newProduct = ProductEntity(
-            name = request.name,
-            price = request.price,
-            description = request.description,
-            quantity = request.quantity,
-            image = request.image,
-            productCategories = productCategories
-        )
+        newProduct.productCategories = productCategories
         return productRepository.save(newProduct).toResponse()
     }
 
@@ -82,6 +83,7 @@ class ProductController constructor(
 
 
     @PatchMapping("/api/products/{id}")
+    @Transactional
     fun updateProduct(@PathVariable id: Int, @RequestBody request: ProductRequest): ProductResponse {
         val productToUpdate = productRepository.findById(id)
             .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id: $id") }
@@ -92,7 +94,7 @@ class ProductController constructor(
             quantity = request.quantity
             image = request.image
         }
-        productCategoryRepository.deleteAllByProductId(id)
+        productCategoryRepository.deleteByProductId(id)
         val newCategories = request.categories.map { categoryId ->
             val category = categoryRepository.findById(categoryId)
                 .orElseThrow {
