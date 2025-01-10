@@ -1,17 +1,22 @@
-import React, { ReactElement } from 'react'
-import "./App.scss";
-import Router from './Router';
-import { BrowserRouter } from 'react-router-dom';
+import "@fortawesome/fontawesome-free/css/all.min.css"
+import React, { ReactElement } from "react"
+import { BrowserRouter } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "./App.scss"
+import { AuthProvider } from "./contexts/authContext"
+import Router from "./Router"
 
 function App(): ReactElement {
-
-  return (
-    <React.StrictMode>
-      <BrowserRouter>
-        <Router/>
-      </BrowserRouter>
-    </React.StrictMode>
-  )
+	return (
+		<AuthProvider>
+			<React.StrictMode>
+				<BrowserRouter>
+					<Router />
+					<ToastContainer />
+				</BrowserRouter>
+			</React.StrictMode>
+		</AuthProvider>
+	)
 }
 
-export default App;
+export default App

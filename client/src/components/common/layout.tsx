@@ -1,16 +1,16 @@
-import { Fragment, ReactElement } from 'react'
-import NavigationBar from './navigationBar'
-import { Outlet } from 'react-router-dom'
+import { Fragment, ReactElement } from "react"
+import { Outlet } from "react-router-dom"
+import Navbar from "../general/navigationBar"
 
 function Layout(): ReactElement {
-  return (
-    <Fragment>
-      {/* <NavigationBar/> */}
-      <div id="container">
-        <Outlet></Outlet>
-      </div>
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			<Navbar />
+			<div id="container" className="overflow-y-auto h-[calc(100vh-60px)]">
+				<Outlet></Outlet>
+			</div>
+		</Fragment>
+	)
 }
 
 export default Layout
