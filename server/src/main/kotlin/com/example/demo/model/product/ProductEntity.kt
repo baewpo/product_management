@@ -36,7 +36,7 @@ data class ProductEntity(
 
     @JsonIgnore
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val productCategories: List<ProductCategoryEntity> = listOf()
+    var productCategories: List<ProductCategoryEntity> = listOf()
 ) {
     fun toResponse(): ProductResponse {
         return ProductResponse(
