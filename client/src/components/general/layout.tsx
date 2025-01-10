@@ -1,6 +1,6 @@
 import { Fragment, ReactElement } from "react"
 import { Outlet } from "react-router-dom"
-import Navbar from "../general/navigationBar"
+import Navbar from "./navigationBar"
 
 function Layout(): ReactElement {
 	return (
