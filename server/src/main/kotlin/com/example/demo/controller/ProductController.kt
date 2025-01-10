@@ -25,7 +25,7 @@ class ProductController constructor(
     val productCategoryRepository: ProductCategoryRepository
 ) {
 
-    @GetMapping("/products")
+    @GetMapping("/api/products")
     fun getProducts(productQuery: ProductQuery): ResponseEntity<Map<String, Any>> {
         val products = productRepository.findAll(
             productSpecification.generateFromQuery(productQuery),
@@ -36,20 +36,20 @@ class ProductController constructor(
             "totalPages" to products.totalPages,
             "pageNumber" to (products.number + 1),
             "pageSize" to products.size,
-            "content" to products.content
+            "content" to products.content.map { it.toResponse() }
         )
 
         return ResponseEntity.ok(response)
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/api/products/{id}")
     fun getProductById(@PathVariable id: Int): ProductResponse {
         val product: ProductEntity = productRepository.findById(id)
             .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id: $id") }
         return product.toResponse()
     }
 
-    @PostMapping("/products")
+    @PostMapping("/api/products")
     fun addProduct(@RequestBody request: ProductRequest): ProductResponse {
         val productCategories = request.categories.map { categoryId ->
             val category = categoryRepository.findById(categoryId)
@@ -72,7 +72,7 @@ class ProductController constructor(
         return productRepository.save(newProduct).toResponse()
     }
 
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/api/products/{id}")
     fun deleteProduct(@PathVariable id: Int): ResponseEntity<String> {
         productRepository.findById(id)
             .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id: $id") }
@@ -81,7 +81,7 @@ class ProductController constructor(
     }
 
 
-    @PatchMapping("/products/{id}")
+    @PatchMapping("/api/products/{id}")
     fun updateProduct(@PathVariable id: Int, @RequestBody request: ProductRequest): ProductResponse {
         val productToUpdate = productRepository.findById(id)
             .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id: $id") }
