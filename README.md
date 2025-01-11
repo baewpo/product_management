@@ -25,7 +25,7 @@ This project is part of an **Introduction to Web Applications** course, designed
 
 ## **Login Details**
 
-Here are the login credentials for the **Admin** and **Student** roles:
+Here are the login credentials for the **Admin** role:
 
 ### **Admin**
 
