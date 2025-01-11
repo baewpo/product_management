@@ -166,7 +166,7 @@ class ProductForm extends Component<IProps, IStates> {
 												this.setState({
 													productRequest: {
 														...this.state.productRequest,
-														price: e.target.value,
+														price: Number(e.target.value)
 													},
 												})
 											}
@@ -185,7 +185,7 @@ class ProductForm extends Component<IProps, IStates> {
 												this.setState({
 													productRequest: {
 														...this.state.productRequest,
-														quantity: e.target.value,
+														quantity: Number(e.target.value)
 													},
 												})
 											}
@@ -195,7 +195,6 @@ class ProductForm extends Component<IProps, IStates> {
 								</div>
 								<label className="block text-sm font-medium text-gray-900">Description</label>
 								<textarea
-									type="text"
 									className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2 transition duration-300 ease focus:outline-none focus:ring-black focus:border-black shadow-sm focus:shadow resize-none h-32"
 									value={this.state.productRequest.description}
 									maxLength={400}
@@ -227,7 +226,7 @@ class ProductForm extends Component<IProps, IStates> {
 													this.setState({
 														productRequest: {
 															...this.state.productRequest,
-															categories: updatedCategories.length ? updatedCategories : undefined,
+															categories: updatedCategories.length ? updatedCategories : [],
 														},
 													})
 												}}

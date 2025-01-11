@@ -8,8 +8,9 @@ import qs from "qs"
 import ProductForm from "./productForm"
 import React from "react"
 import Pagination from "components/general/pagination"
-import GeneralConfirmModal from "components/general/comfirmModal"
+import GeneralConfirmModal from "components/general/confirmModal"
 import Loading from "components/general/loading"
+import CategoryResponse from "models/product/categoryResponse"
 
 interface IProps {}
 
@@ -23,6 +24,7 @@ interface IStates {
 	formType: ProductFormTypeEnum
 	productRequest: ProductRequest
 	showDeleteModal: boolean
+	categoryOptions: Array<CategoryResponse>
 }
 
 class ProductTable extends React.Component<IProps, IStates> {
@@ -55,12 +57,14 @@ class ProductTable extends React.Component<IProps, IStates> {
 		})
 	}
 
-	private updateQueryParams(newParams = {}): void {
+	private updateQueryParams(newParams: ProductParam = {}): void {
 		const queryParams = new URLSearchParams(window.location.search)
 
 		Object.keys(newParams).forEach((key) => {
-			if (newParams[key]) {
-				queryParams.set(key, newParams[key])
+			const value = newParams[key as keyof ProductParam]
+
+			if (value || value === 0) {
+				queryParams.set(key, String(value))
 			} else {
 				queryParams.delete(key)
 			}
@@ -185,7 +189,10 @@ class ProductTable extends React.Component<IProps, IStates> {
 											className="fas fa-trash-alt text-slate-700 cursor-pointer hover:text-slate-500 transition-all ease duration-300 shadow-sm hover:shadow"
 											aria-hidden="true"
 											onClick={() =>
-												this.setState({ showDeleteModal: true, productRequest: { id: product.id } })
+												this.setState({
+													showDeleteModal: true,
+													productRequest: { ...this.state.productRequest, id: product.id },
+												})
 											}></i>
 									</td>
 								</tr>

@@ -1,6 +1,6 @@
 class UserResponse {
-    public id: number
-    public username: string
-    public role: string
+    public id = Number()
+    public username = String()
+    public role = String()
 }
 export default UserResponse

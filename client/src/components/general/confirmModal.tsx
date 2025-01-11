@@ -7,14 +7,16 @@ interface IProps {
     onConfirm: () => void
 }
 
-class GeneralConfirmModal extends React.Component<IProps, {}> {
-    constructor(props: IProps) {
-        super(props)
-    }
+interface IStates {
+}
+
+class GeneralConfirmModal extends React.Component<IProps, IStates> {
+	constructor(props: IProps) {
+		super(props)
+	}
 
 	public render(): JSX.Element {
-
-		if (!this.props.show) return null
+		if (!this.props.show) return <></>
 
 		return (
 			<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">

@@ -1,10 +1,14 @@
 import { Component } from "react"
 import { NavLink } from "react-router-dom"
-import { AuthContext } from "../../contexts/authContext"
+import { AuthContext, AuthContextType } from "../../contexts/authContext"
+
+interface IProps {
+}
 
 interface IStates {
 	isMenuOpen: boolean
 }
+
 class Navbar extends Component<IProps, IStates> {
 	static contextType = AuthContext
 
@@ -34,7 +38,7 @@ class Navbar extends Component<IProps, IStates> {
 	}
 
 	public render() {
-		const { isLoggedIn, logout } = this.context
+		const { isLoggedIn, logout } = this.context as AuthContextType
 		return (
 			<div className="h-[65px] w-full flex items-center px-[20px] z-50 bg-white drop-shadow-md relative">
 				<label className="font-bold text-xl text-slate-800 flex items-center ">
@@ -58,7 +62,6 @@ class Navbar extends Component<IProps, IStates> {
 					{isLoggedIn && (
 						<NavLink
 							to="/manage-product"
-							onClick={this.handleAddProductClick}
 							className="rounded font-medium px-4 py-2 text-slate-800 shadow-sm hover:text-white hover:bg-slate-700 border border-slate-700 hover:shadow hover:border-slate-800 transition-all ease-in-out duration-500 bg-white">
 							<i className="fas fa-cog mr-2" aria-hidden="true" />
 							Manage Product

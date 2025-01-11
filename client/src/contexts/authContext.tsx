@@ -1,7 +1,7 @@
 import UserResponse from "models/user/userResponse"
 import { createContext, Component, ReactNode } from "react"
 
-interface AuthContextType {
+export interface AuthContextType {
 	isLoggedIn: boolean
 	login: (token: UserResponse) => void
 	logout: () => void

@@ -2,7 +2,6 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import React, { ReactElement } from "react"
 import { BrowserRouter } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import "./App.scss"
 import { AuthProvider } from "./contexts/authContext"
 import Router from "./Router"
 

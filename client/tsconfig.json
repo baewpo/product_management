@@ -13,10 +13,13 @@
 		"jsx": "react-jsx",
 		"strict": true,
 		"noUnusedLocals": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"baseUrl": "./src",
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"useUnknownInCatchVariables": false
 	},
 	"references": [{ "path": "./tsconfig.node.json" }],
 	"include": ["src", "src/**/*"],

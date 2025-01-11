@@ -1,11 +1,12 @@
 import CategoryResponse from "./categoryResponse"
 
 class ProductResponse {
-	public name: string = String()
-	public price: number = Number()
-	public description: string = String()
-	public quantity: number = Number()
-	public image: string = String()
+	public id = Number()
+	public name = String()
+	public price = Number()
+	public description = String()
+	public quantity = Number()
+	public image = String()
 	public category: Array<CategoryResponse> = new Array<CategoryResponse>()
 }
 

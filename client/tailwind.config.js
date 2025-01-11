@@ -117,7 +117,6 @@ module.exports = {
     }
   },
   plugins: [
-    require('@tailwindcss/line-clamp'),
     plugin(({ addBase, addComponents, addUtilities, theme, e }) => {
       const values = theme('animationDelay')
       const utilities = Object.entries(values).map(([key, value]) => {
