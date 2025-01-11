@@ -17,4 +17,21 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="20240612-insert-category-data" author="suphatsorn.suk">
+        <sql>
+            INSERT INTO category (name)
+            VALUES
+            ('Electronics'),
+            ('Fashion'),
+            ('Home &amp; Garden'),
+            ('Sports &amp; Outdoors'),
+            ('Toys &amp; Games'),
+            ('Books'),
+            ('Health &amp; Beauty'),
+            ('Automotive'),
+            ('Pet Supplies'),
+            ('Groceries');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

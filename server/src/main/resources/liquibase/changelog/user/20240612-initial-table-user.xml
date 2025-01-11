@@ -15,7 +15,7 @@
             <column name="username" type="varchar(20)">
                 <constraints nullable="false" />
         </column>
-            <column name="password" type="varchar(16)">
+            <column name="password" type="varchar(64)">
                 <constraints nullable="false" />
             </column>
             <column name="role" type="varchar(10)" defaultValue="user">
@@ -27,7 +27,7 @@
         <insert tableName="user">
             <column name="id" value="1" />
             <column name="username" value="admin" />
-            <column name="password" value="password123 "/>
+            <column name="password" value="ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"/>
             <column name="role" value="admin" />
         </insert>
     </changeSet>

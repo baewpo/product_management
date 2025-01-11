@@ -5,28 +5,53 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="20240612-create-table-product" author="suphatsorn.suk">
         <createTable tableName="product">
             <column name="id" autoIncrement="true" type="int">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="price" type="double">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="description" type="varchar(400)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="quantity" type="int" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
             <column name="image" type="varchar(300)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamptz" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamptz" defaultValueComputed="now()">
+                <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="20240612-insert-example-data" author="suphatsorn.suk">
+        <sql>
+            INSERT INTO product (name, price, description, quantity, image)
+            VALUES
+            ('Leather Jacket', 150.0, 'Stylish leather jacket for men. Made with high-quality leather.', 50, 'https://tinyurl.com/29yhznrd'),
+            ('Running Shoes', 85.0, 'Comfortable running shoes with a breathable upper and durable sole.', 0, 'https://tinyurl.com/2bcbhhv9'),
+            ('Bluetooth Headphones', 120.0, 'Wireless Bluetooth headphones with noise-canceling technology.', 100, 'https://tinyurl.com/29gd9k27'),
+            ('Smartphone Stand', 15.0, 'Adjustable stand for smartphones and tablets. Ideal for watching videos or video calls.', 150, 'https://tinyurl.com/2a4hyx93'),
+            ('Sports Watch', 250.0, 'Water-resistant sports watch with heart rate monitoring and GPS.', 75, 'https://tinyurl.com/29vm95gg'),
+            ('Backpack', 40.0, 'Durable and spacious backpack for daily use. Includes a laptop compartment.', 120, 'https://tinyurl.com/29gfyvr9'),
+            ('Portable Charger', 25.0, 'Compact and high-capacity power bank for charging on the go.', 180, 'https://tinyurl.com/2anlb7co'),
+            ('Wristwatch', 95.0, 'Elegant wristwatch with a stainless steel band and scratch-resistant glass.', 60, 'https://tinyurl.com/23olfpwk'),
+            ('Laptop Sleeve', 30.0, 'Protective laptop sleeve made with durable material. Fits most 15-inch laptops.', 90, 'https://tinyurl.com/299tstoc'),
+            ('Camera Bag', 60.0, 'Water-resistant camera bag with multiple compartments for lenses and accessories.', 50, 'https://tinyurl.com/272883e2'),
+            ('Gaming Mouse', 40.0, 'Ergonomic gaming mouse with customizable buttons and high-precision sensor.', 120, 'https://tinyurl.com/25543arm');
+        </sql>
     </changeSet>
 </databaseChangeLog>
