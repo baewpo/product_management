@@ -152,14 +152,16 @@ class ProductTable extends React.Component<IProps, IStates> {
 								<th className="block py-[5px] truncate w-[15%] border-x">IMAGE</th>
 								<th className="block py-[5px] truncate w-[20%] border-x ">NAME</th>
 								<th className="block py-[5px] truncate w-[25%] border-x ">DESCRIPTION</th>
-								<th className="block py-[5px] truncate w-[10%] border-x">QUANTITY</th>
-								<th className="block py-[5px] truncate w-[10%] border-x">PRICE</th>
-								<th className="block py-[5px] truncate w-[10%] border-x">ACTION</th>
+								<th className="block py-[5px] truncate w-[10%] min-w-[80px] border-x">QUANTITY</th>
+								<th className="block py-[5px] truncate w-[10%] min-w-[80px] border-x">PRICE</th>
+								<th className="block py-[5px] truncate w-[10%] min-w-[80px] border-x">ACTION</th>
 							</tr>
 						</thead>
 						<tbody className="block overflow-y-scroll h-full">
 							{this.state.products.map((product) => (
-								<tr key={product.id} className="flex odd:bg-slate-50 even:bg-slate-100 hover:bg-slate-200">
+								<tr
+									key={product.id}
+									className="flex odd:bg-slate-50 even:bg-slate-100 hover:bg-slate-200 min-w-[80px]">
 									<td className="block h-[90px] px-[12px] py-[15px] truncate whitespace-nowrap w-[10%] text-center">
 										{product.id}
 									</td>
@@ -168,13 +170,13 @@ class ProductTable extends React.Component<IProps, IStates> {
 									</td>
 									<td className="block h-[90px] px-[12px] py-[15px] w-[20%] line-clamp-3">{product.name}</td>
 									<td className="h-[90px] px-[12px] py-[15px] w-[25%] line-clamp-3">{product.description}</td>
-									<td className="block h-[90px] px-[12px] py-[15px] truncate w-[10%] text-center">
+									<td className="block h-[90px] px-[12px] py-[15px] truncate w-[10%] text-center min-w-[80px]">
 										{product.quantity}
 									</td>
-									<td className="block h-[90px] px-[12px] py-[15px] truncate w-[10%] text-center">
+									<td className="block h-[90px] px-[12px] py-[15px] truncate w-[10%] text-center min-w-[80px]">
 										${product.price}
 									</td>
-									<td className="h-[90px] px-[12px] py-[15px] truncate w-[10%] text-center">
+									<td className="h-[90px] px-[12px] py-[15px] w-[10%] min-w-[80px] text-center">
 										<i
 											className="fas fa-edit text-slate-700 cursor-pointer hover:text-slate-500 transition-all ease duration-300 shadow-sm hover:shadow mr-2"
 											aria-hidden="true"
