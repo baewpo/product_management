@@ -36,7 +36,7 @@ class ProductCard extends React.Component<IProps, IStates> {
 						<div>
 							<h6 className="text-[17px] font-medium line-clamp-1 break-words">{this.props.product.name}</h6>
 							<div className="flex mt-1">
-								<p className="text-sm line-clamp-3 break-words w-full min-h-[72px]">
+								<p className="text-sm line-clamp-3 break-words w-full lg:min-h-[72px]">
 									{this.props.product.description}
 								</p>
 								<p className="text-3xl font-bold p-2 rounded-xl ">${this.props.product.price}</p>
