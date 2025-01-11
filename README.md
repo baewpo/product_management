@@ -1,5 +1,5 @@
 # **Product Management System**
-This project is part of an **introductory HTML** course, designed to help students learn about API integration. The system allows for managing and reviewing product details, including features for viewing all products, filtering search results, and allowing administrators to add, edit, or delete products
+This project is part of an **Introduction to Web Applications** course, designed to help students learn about API integration. The system allows for managing and reviewing product details, including features for viewing all products, filtering search results, and allowing administrators to add, edit, or delete products
 
 ## **Main Features**
 
