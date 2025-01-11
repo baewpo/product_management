@@ -228,7 +228,7 @@ class ProductTable extends React.Component<IProps, IStates> {
 						})
 					}}
 				/>
-				<div className="flex justify-end text-xs">
+				<div className="flex justify-end">
 					<Pagination
 						currentPage={this.state.currentPage}
 						totalPages={this.state.totalPages}
