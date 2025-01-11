@@ -80,7 +80,7 @@ class ProductTable extends React.Component<IProps, IStates> {
 				params: {
 					...this.state.params,
 					pageNumber: this.state.currentPage,
-					pageSize: 9,
+					pageSize: 20,
 				},
 				paramsSerializer: (params) => {
 					return qs.stringify(params, { arrayFormat: "comma" })
