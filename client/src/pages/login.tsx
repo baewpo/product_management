@@ -54,7 +54,7 @@ class Login extends Component<IProps, IStates> {
 
 	public render(): JSX.Element {
 		return (
-			<div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 ">
+			<div className="h-full flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 ">
 				<div className="max-w-sm w-full bg-white p-8 rounded-2xl shadow-lg">
 					<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 						<div className="font-medium text-2xl uppercase text-gray-800 text-center mb-10">

@@ -14,6 +14,9 @@ This project is part of an **introductory HTML** course, designed to help studen
 - **Frontend**: [React](https://reactjs.org/) with **TypeScript** for building the UI.
 - **Backend**: [Java Spring Boot](https://spring.io/projects/spring-boot) for building the API.
 - **Database**: [PostgreSQL](https://www.postgresql.org/) for storing data.
+- **Deployment**: Deployed on [Railway](https://render.com/) -> [Product Management System](https://product-management-test.up.railway.app/)
+
+**Note**: This deployment link is temporary and may be removed in the future as the deployment is for testing purposes.
 
 ## Checklist (Maybe in the future)
 
