@@ -22,7 +22,7 @@ class ProductCard extends React.Component<IProps, IStates> {
 				<div className="bg-white shadow border rounded-xl p-4 pb-0 flex flex-col">
 					<div className="bg-gray-100 rounded-t-xl flex justify-center items-center h-64 relative overflow-hidden shadow w-full">
 						{!this.props.product.quantity && (
-							<h6 className="bg-grey-dark text-white absolute top-4 left-0 rounded-r-md px-6 py-2 mb-0 font-medium">
+							<h6 className="bg-grey-dark text-white absolute top-4 left-0 rounded-r-md px-6 py-2 mb-0 font-medium z-10">
 								Out of stock
 							</h6>
 						)}
@@ -36,8 +36,10 @@ class ProductCard extends React.Component<IProps, IStates> {
 						<div>
 							<h6 className="text-[17px] font-medium line-clamp-1 break-words">{this.props.product.name}</h6>
 							<div className="flex mt-1">
-								<p className="text-sm line-clamp-3 break-words w-full">{this.props.product.description}</p>
-								<p className="text-3xl font-bold p-2 rounded-xl">${this.props.product.price}</p>
+								<p className="text-sm line-clamp-3 break-words w-full min-h-[72px]">
+									{this.props.product.description}
+								</p>
+								<p className="text-3xl font-bold p-2 rounded-xl ">${this.props.product.price}</p>
 							</div>
 						</div>
 						<hr className="my-6" />

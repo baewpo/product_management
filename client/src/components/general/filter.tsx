@@ -54,11 +54,6 @@ class Filter extends Component<IProps, IStates> {
 								this.setState(
 									{
 										productParam: { ...this.state.productParam, name: updatedName },
-									},
-									() => {
-										if (!updatedName) {
-											this.props.onSearch(this.state.productParam)
-										}
 									}
 								)
 							}}

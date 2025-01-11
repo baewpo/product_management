@@ -5,7 +5,7 @@ class ProductManagementPage extends React.Component<{}, {}> {
 
 	public render(): JSX.Element {
 		return (
-			<div className="h-full mx-auto p-4 sm:px-6 lg:px-8 bg-gray-100">
+			<div className="h-full mx-auto p-6 bg-gray-100">
 				<ProductTable />
 			</div>
 		)
