@@ -2,17 +2,21 @@ import React, { Component } from "react"
 import { showToast } from "../components/general/toast"
 import UserRequest from "../models/user/userRequest"
 import axios from "axios"
-import { AuthContext } from "contexts/authContext"
+import { AuthContext, AuthContextType } from "contexts/authContext"
+
+interface IProps {
+
+}
 
 interface IStates {
 	user: UserRequest
 	errorMessage: string
 }
 
-class Login extends Component<{}, IStates> {
+class Login extends Component<IProps, IStates> {
 	static contextType = AuthContext
 
-	constructor(props) {
+	constructor(props: IProps) {
 		super(props)
 		this.state = {
 			user: new UserRequest(),
@@ -22,13 +26,14 @@ class Login extends Component<{}, IStates> {
 
 	private login = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		const { login } = this.context as AuthContextType
 		try {
 			const response = await axios.post("/api/login", {
 				username: this.state.user.username,
 				password: this.state.user.password,
 			})
 			if (response.data) {
-				this.context.login(response.data)
+				login(response.data)
 				showToast("success", "Login Success!")
 			}
 		} catch (error) {
@@ -52,11 +57,11 @@ class Login extends Component<{}, IStates> {
 			<div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 ">
 				<div className="max-w-sm w-full bg-white p-8 rounded-2xl shadow-lg">
 					<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-						<div class="font-medium text-2xl uppercase text-gray-800 text-center mb-10">
+						<div className="font-medium text-2xl uppercase text-gray-800 text-center mb-10">
 							Login To Your Account
 						</div>
 						<form className="space-y-6" onSubmit={this.login}>
-							<div class="relative z-0">
+							<div className="relative z-0">
 								<input
 									id="username"
 									name="username"
@@ -71,7 +76,7 @@ class Login extends Component<{}, IStates> {
 									Username
 								</label>
 							</div>
-							<div class="relative z-0">
+							<div className="relative z-0">
 								<input
 									id="password"
 									name="password"
@@ -85,9 +90,11 @@ class Login extends Component<{}, IStates> {
 								<label className="absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">
 									Password
 								</label>
-								<div class="flex items-center mb-10 mt-6">
-									<div class="flex ml-auto">
-										<a href="#" class="inline-flex text-sm text-blue-500 hover:text-blue-700 transition-all ease duration-500">
+								<div className="flex items-center mb-10 mt-6">
+									<div className="flex ml-auto">
+										<a
+											href="#"
+											className="inline-flex text-sm text-blue-500 hover:text-blue-700 transition-all ease duration-500">
 											Forgot Your Password?
 										</a>
 									</div>

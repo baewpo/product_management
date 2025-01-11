@@ -1,14 +1,14 @@
-import { toast } from "react-toastify"
+import { ToastOptions, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-const DEFAULT_OPTIONS = {
+const toastOptions: ToastOptions = {
 	position: "top-right",
 	autoClose: 3000,
 	closeOnClick: true,
 }
 
-const showToast = (type, message, options = {}) => {
-	const config = { ...DEFAULT_OPTIONS, ...options }
+const showToast = (type: string, message: string, options = {}) => {
+	const config = { ...toastOptions, ...options }
 
 	switch (type) {
 		case "success":

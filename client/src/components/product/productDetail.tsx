@@ -1,5 +1,5 @@
+import ProductResponse from "models/product/productResponse"
 import { Component } from "react"
-import ProductResponse from "~/src/models/product"
 
 interface IProps {
 	product: ProductResponse

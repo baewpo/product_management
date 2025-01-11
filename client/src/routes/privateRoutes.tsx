@@ -1,16 +1,17 @@
 import React, { Component } from "react"
 import { Navigate } from "react-router-dom"
-import { AuthContext } from "contexts/authContext"
+import { AuthContext, AuthContextType } from "contexts/authContext"
 
 interface IProps {
-	component: React.ReactElement
+	component: React.ElementType
 }
 
 class PrivateRoute extends Component<IProps> {
 	static contextType = AuthContext
 
 	render() {
-		const { isLoggedIn} = this.context
+		const { isLoggedIn} = this.context as AuthContextType
+		const { component: Component, ...restProps } = this.props
 
 		if (isLoggedIn && window.location.pathname === "/login") {
 			return <Navigate to="/" replace />
@@ -20,7 +21,7 @@ class PrivateRoute extends Component<IProps> {
 			return <Navigate to="/login" replace />
 		}
 
-		return <this.props.component {...this.props} />
+		return <Component {...restProps} />
 	}
 }
 

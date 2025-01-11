@@ -1,6 +1,6 @@
 import React from "react"
-import ProductResponse from "~/src/models/product"
 import ProductDetail from "./productDetail"
+import ProductResponse from "models/product/productResponse"
 
 interface IProps {
 	product: ProductResponse

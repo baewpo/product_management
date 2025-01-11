@@ -107,7 +107,7 @@ class Filter extends Component<IProps, IStates> {
 									this.setState({
 										productParam: {
 											...this.state.productParam,
-											priceMin: e.target.value,
+											priceMin: Number(e.target.value,)
 										},
 									})
 								}
@@ -125,7 +125,7 @@ class Filter extends Component<IProps, IStates> {
 									this.setState({
 										productParam: {
 											...this.state.productParam,
-											priceMax: e.target.value,
+											priceMax: Number(e.target.value)
 										},
 									})
 								}

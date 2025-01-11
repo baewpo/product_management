@@ -9,6 +9,9 @@ import Pagination from "components/general/pagination"
 import qs from "qs"
 import ProductCard from "components/product/productCard"
 
+interface IProps {
+
+}
 interface IStates {
 	products: Array<ProductResponse>
 	totalPages: number
@@ -17,7 +20,7 @@ interface IStates {
 	params: ProductParam
 }
 
-class ProductPage extends Component<{}, IStates> {
+class ProductPage extends Component<IProps, IStates> {
 	constructor(props: IProps) {
 		super(props)
 		this.state = {
@@ -41,12 +44,14 @@ class ProductPage extends Component<{}, IStates> {
 		})
 	}
 
-	private updateQueryParams(newParams = {}): void {
+	private updateQueryParams(newParams: ProductParam = {}): void {
 		const queryParams = new URLSearchParams(window.location.search)
 
 		Object.keys(newParams).forEach((key) => {
-			if (newParams[key]) {
-				queryParams.set(key, newParams[key])
+			const value = newParams[key as keyof ProductParam]
+
+			if (value || value === 0) {
+				queryParams.set(key, String(value))
 			} else {
 				queryParams.delete(key)
 			}
